@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Travel Planner</title>
+    <link rel="stylesheet" href="/styles/styles.scss">
+</head>
+
+<body>
+    <header>
+        <div class="page-title">
+            <h1>Travel Planner</h1>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <form class="">
+                <input id="url" type="text" value="" placeholder="Where would you like to travel?">
+                <input class="buttons" id="button" type="submit" value="Submit" name="" onclick="return Client.handleSubmit(event)"
+                    onsubmit="return Client.handleSubmit(event)">
+            </form>
+        </section>
+
+        <section>
+            <div id="location-photo"></div>
+            <div id="">
+                <span id="my-trip">My trip to Paris, France</span>
+                <span id="departing">Departing at blablabla</span>
+                <input class="buttons" id="" type="button" value="Save trip" name="" onclick="" onsubmit="">
+                <input class="buttons" id="" type="button" value="Delete trip" name="" onclick="" onsubmit="">
+                <span id="day-counter">This journey is x days away</span>
+                <span id="typical-weather-title">The typical weather for then is:
+                    <span id="typical-weather">Nice</span>
+                </span>
+            </div>
+        </section>
+
+        <section>
+            <strong>Form Results:</strong>
+            <div id="results"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Capstone project created by Ádám Sárpátki for Udacity's Front-End Developer Nanodegree Program</p>
+    </footer>
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
+</body>
+
+</html>
