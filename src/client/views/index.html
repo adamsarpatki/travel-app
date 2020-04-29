@@ -5,7 +5,8 @@
 <head>
     <meta charset="utf-8">
     <title>Travel Planner</title>
-    <link rel="stylesheet" href="/styles/styles.scss">
+    <link rel="stylesheet" href="/styles/base.scss">
+    <link rel="stylesheet" href="/styles/form.scss">
 </head>
 
 <body>
@@ -18,30 +19,26 @@
     <main>
         <section>
             <form class="">
-                <input id="url" type="text" value="" placeholder="Where would you like to travel?">
+                <input id="destination-input" type="text" value="" placeholder="Where would you like to travel?">
+                <input id="date-input" type="date" value="" placeholder="When would you like to travel?">
                 <input class="buttons" id="button" type="submit" value="Submit" name="" onclick="return Client.handleSubmit(event)"
                     onsubmit="return Client.handleSubmit(event)">
             </form>
         </section>
 
-        <section>
+        <section id="results">
             <div id="location-photo"></div>
-            <div id="">
-                <span id="my-trip">My trip to Paris, France</span>
-                <span id="departing">Departing at blablabla</span>
-                <input class="buttons" id="" type="button" value="Save trip" name="" onclick="" onsubmit="">
-                <input class="buttons" id="" type="button" value="Delete trip" name="" onclick="" onsubmit="">
-                <span id="day-counter">This journey is x days away</span>
-                <span id="typical-weather-title">The typical weather for then is:
-                    <span id="typical-weather">Nice</span>
-                </span>
+            <div id="result-data">
+                <div id="my-trip">My trip to Paris, France</div>
+                <div id="departing">Departing at blablabla</div>
+                <input class="buttons" id="save-button" type="button" value="Save trip" name="" onclick="" onsubmit="">
+                <input class="buttons" id="delete-button" type="button" value="Delete trip" name="" onclick="" onsubmit="">
+                <div id="day-counter">This journey is x days away</div>
+                <div id="typical-weather-title">The typical weather for then is:</div>
+                <div id="typical-weather">Nice</div>
             </div>
         </section>
 
-        <section>
-            <strong>Form Results:</strong>
-            <div id="results"></div>
-        </section>
     </main>
 
     <footer>
