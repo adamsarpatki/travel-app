@@ -1,9 +1,9 @@
 var path = require('path');
 const express = require('express');
 const app = express();
+const fetch = require('node-fetch');
 const Geonames = require('geonames.js');
 const dotenv = require('dotenv');
-const fs = require('fs')
 dotenv.config();
 
 const travelData = {}
@@ -37,7 +37,12 @@ app.get('/locationInfo', async function (req, res) {
   try {
     const results = await geonames.search({ name_equals: req.query.location })
     const city = results.geonames[0];
-    res.send({lng: city.lng, lat: city.lat});
+    fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${city.lat}&lon=${city.lng}&key=${process.env.weatherbitKEY}`)
+    .then(res => res.json())
+    .then(json => console.log(json));
+    
+    
+    // res.send({lng: city.lng, lat: city.lat});
   } catch (err) {
     console.error(err);
   }
