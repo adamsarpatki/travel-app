@@ -63,7 +63,9 @@ app.get('/locationInfo', async function (req, res) {
     difference = dateDiffInDays(a, b);
     console.log(getWeatherJson.data[difference]);
     // Get image of location
-    
+    const getImageRaw = await fetch(`https://pixabay.com/api/?key=${process.env.pixabayKEY}&q=${req.query.location}`);
+    const getImageJson = await getImageRaw.json();
+    console.log(getImageJson.hits[0].largeImageURL);
     
   } catch (err) {
     console.error(err);
