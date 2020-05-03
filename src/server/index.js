@@ -52,21 +52,39 @@ app.get('/locationInfo', async function (req, res) {
     // Get location data
     const results = await geonames.search({ name_equals: req.query.location })
     const city = results.geonames[0];
+
     // Get weather data
     const getWeatherRaw = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${city.lat}&lon=${city.lng}&key=${process.env.weatherbitKEY}`)
     const getWeatherJson = await getWeatherRaw.json();
+
     // Write json data to file
     fs.writeFileSync('kacsa.txt', JSON.stringify(getWeatherJson, null, 2));
+
     // Get weather data of a particular day
     const a = new Date(),
-    b = new Date(req.query.date),
-    difference = dateDiffInDays(a, b);
-    console.log(getWeatherJson.data[difference]);
+      b = new Date(req.query.date),
+      difference = dateDiffInDays(a, b);
+
+    // Store weather info in an objects
+    const weatherData = {};
+    weatherData.high = getWeatherJson.data[difference].max_temp;
+    weatherData.low = getWeatherJson.data[difference].min_temp;
+    weatherData.general = getWeatherJson.data[difference].weather.description;
+
     // Get image of location
-    const getImageRaw = await fetch(`https://pixabay.com/api/?key=${process.env.pixabayKEY}&q=${req.query.location}`);
+    const getImageRaw = await fetch(`https://pixabay.com/api/?key=${process.env.pixabayKEY}&q=${req.query.location}&orientation=vertical`);
     const getImageJson = await getImageRaw.json();
-    console.log(getImageJson.hits[0].largeImageURL);
-    
+    // console.log(getImageJson.hits[0].largeImageURL);
+
+    // Add info to travelData
+    travelData.location = req.query.location;
+    travelData.departure = req.query.date;
+    travelData.days = difference;
+    travelData.weather = weatherData;
+    travelData.imageURL = getImageJson.hits[0].largeImageURL;
+    console.log(travelData);
+    res.send(travelData);
+
   } catch (err) {
     console.error(err);
   }
