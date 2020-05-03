@@ -49,16 +49,20 @@ function dateDiffInDays(a, b) {
 app.get('/locationInfo', async function (req, res) {
   // async/await
   try {
+    // Get location data
     const results = await geonames.search({ name_equals: req.query.location })
     const city = results.geonames[0];
+    // Get weather data
     const getWeatherRaw = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${city.lat}&lon=${city.lng}&key=${process.env.weatherbitKEY}`)
     const getWeatherJson = await getWeatherRaw.json();
+    // Write json data to file
     fs.writeFileSync('kacsa.txt', JSON.stringify(getWeatherJson, null, 2));
+    // Get weather data of a particular day
     const a = new Date(),
     b = new Date(req.query.date),
     difference = dateDiffInDays(a, b);
     console.log(getWeatherJson.data[difference]);
-
+    // Get image of location
     
     
   } catch (err) {
