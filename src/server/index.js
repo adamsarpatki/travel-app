@@ -46,7 +46,7 @@ function dateDiffInDays(a, b) {
 }
 
 
-app.get('/locationInfo', async function (req, res) {
+app.get('/travelInfo', async function (req, res) {
   // async/await
   try {
     // Get location data
