@@ -58,7 +58,7 @@ app.get('/locationInfo', async function (req, res) {
     const getWeatherJson = await getWeatherRaw.json();
 
     // Write json data to file
-    fs.writeFileSync('kacsa.txt', JSON.stringify(getWeatherJson, null, 2));
+    // fs.writeFileSync('kacsa.txt', JSON.stringify(getWeatherJson, null, 2));
 
     // Get weather data of a particular day
     const a = new Date(),

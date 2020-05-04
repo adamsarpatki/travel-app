@@ -11,12 +11,18 @@ function handleSubmit(event) {
         .then(res => res.json())
         .then(function (res) {
             // Update HTML
-            document.getElementById('location-photo').innerHTML = `<img src="${res.imageURL}">`
-            document.getElementById('my-trip').innerHTML = `My trip to ${res.location}.`
-            document.getElementById('departing').innerHTML = `Departing at ${res.departure}.`
-            document.getElementById('day-counter').innerHTML = `This journey is ${res.days} days away.`
-            document.getElementById('typical-weather').innerHTML = `High: ${res.weather.high}. Low: ${res.weather.low}.`
-            document.getElementById('weather-desc').innerHTML = `${res.weather.general}.`
+            document.getElementById('results').innerHTML =
+                `<div id="location-photo"><img src="${res.imageURL}"></div>
+                <div id="result-data">
+                    <div id="my-trip">My trip to ${res.location}.</div>
+                    <div id="departing">Departing at ${res.departure}.</div>
+                    <input class="buttons" id="save-button" type="button" value="Save trip" name="" onclick="return Client.storeResults(event)">
+                    <input class="buttons" id="delete-button" type="button" value="Delete trip" name="" onclick="return Client.deleteResults(event)">
+                    <div id="day-counter">This journey is ${res.days} days away.</div>
+                    <div id="typical-weather-title">The typical weather for then is:</div>
+                    <div id="typical-weather">High: ${res.weather.high}. Low: ${res.weather.low}.</div>
+                    <div id="weather-desc">${res.weather.general}.</div>
+                </div>`
         })
 }
 
