@@ -1,5 +1,11 @@
 footer {
     display: grid;
-    margin: 2rem;
+    margin-left: 40rem;
+    margin-right: 40rem;
+    background-color: #e9eff1;
     justify-content: center;
+
+    p {
+        margin: 2rem;
+    }
 }
