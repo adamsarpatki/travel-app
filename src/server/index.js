@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
 const Geonames = require('geonames.js');
-const fs = require('fs');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -21,8 +20,6 @@ app.use(cors());
 
 app.use(express.static('dist'))
 
-console.log(__dirname)
-
 app.get('/', function (req, res) {
   // res.sendFile('dist/index.html')
   res.sendFile(path.resolve('src/client/views/index.html'))
@@ -30,7 +27,7 @@ app.get('/', function (req, res) {
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
-  console.log('Example app listening on port 8081!')
+  console.log('App listening on port 8081!')
 })
 
 // Function to get the difference between current date and the travel date
@@ -47,7 +44,6 @@ function dateDiffInDays(a, b) {
 
 
 app.get('/locationInfo', async function (req, res) {
-  // async/await
   try {
     // Get location data
     const results = await geonames.search({ name_equals: req.query.location })
@@ -56,9 +52,6 @@ app.get('/locationInfo', async function (req, res) {
     // Get weather data
     const getWeatherRaw = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${city.lat}&lon=${city.lng}&key=${process.env.weatherbitKEY}`)
     const getWeatherJson = await getWeatherRaw.json();
-
-    // Write json data to file
-    // fs.writeFileSync('kacsa.txt', JSON.stringify(getWeatherJson, null, 2));
 
     // Get weather data of a particular day
     const a = new Date(),
@@ -74,7 +67,6 @@ app.get('/locationInfo', async function (req, res) {
     // Get image of location
     const getImageRaw = await fetch(`https://pixabay.com/api/?key=${process.env.pixabayKEY}&q=${req.query.location}&orientation=vertical`);
     const getImageJson = await getImageRaw.json();
-    // console.log(getImageJson.hits[0].largeImageURL);
 
     // Add info to travelData
     travelData.location = req.query.location;
@@ -82,7 +74,6 @@ app.get('/locationInfo', async function (req, res) {
     travelData.days = difference;
     travelData.weather = weatherData;
     travelData.imageURL = getImageJson.hits[0].largeImageURL;
-    console.log(travelData);
     res.send(travelData);
 
   } catch (err) {

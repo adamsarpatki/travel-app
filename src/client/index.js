@@ -1,6 +1,5 @@
-import { handleSubmit } from './js/app.js'
-import { storeResults } from './js/store-results.js'
-import { deleteResults } from './js/delete-results.js'
+import { handleSubmit, generateHTML } from './js/formHandler.js'
+import { storeItem, deleteItem, getItem } from './js/localStorage.js'
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -8,6 +7,11 @@ import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 
-export { handleSubmit }
-export { storeResults }
-export { deleteResults }
+export { handleSubmit, storeItem, deleteItem, generateHTML, getItem }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const trips = getItem()
+    if (trips) {
+        document.getElementById('results').innerHTML = trips;
+    }
+})
