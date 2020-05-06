@@ -9,6 +9,8 @@ import './styles/header.scss'
 
 export { handleSubmit, storeItem, deleteItem, generateHTML, getItem }
 
+document.getElementById('button').addEventListener('click', handleSubmit);
+
 document.addEventListener('DOMContentLoaded', function () {
     const trips = getItem()
     if (trips) {
