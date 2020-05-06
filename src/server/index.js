@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
 const Geonames = require('geonames.js');
+const { dateDiffInDays } = require('./helper.js');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -20,36 +21,17 @@ app.use(cors());
 
 app.use(express.static('dist'))
 
-app.get('/', function (req, res) {
-  // res.sendFile('dist/index.html')
-  res.sendFile(path.resolve('src/client/views/index.html'))
-})
-
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
   console.log('App listening on port 8081!')
 })
 
-// Function to get the difference between current date and the travel date
-const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-
-// a and b are javascript Date objects
-function dateDiffInDays(a, b) {
-  // Discard the time and time-zone information.
-  const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-  const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
-
-  return Math.floor((utc2 - utc1) / _MS_PER_DAY);
-}
-
-
 app.get('/locationInfo', async function (req, res) {
-  // async/await
   try {
     // Calculate difference between future and current date
-    const a = new Date();
-    const b = new Date(req.query.date);
-    const difference = dateDiffInDays(a, b);
+    const currentDate = new Date();
+    const targetDate = new Date(req.query.date);
+    const difference = dateDiffInDays(currentDate, targetDate);
     if (difference > 15) {
       const maxDate = new Date()
       maxDate.setDate(maxDate.getDate() + 16);
