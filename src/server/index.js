@@ -46,6 +46,17 @@ function dateDiffInDays(a, b) {
 app.get('/locationInfo', async function (req, res) {
   // async/await
   try {
+    // Calculate difference between future and current date
+    const a = new Date();
+    const b = new Date(req.query.date);
+    const difference = dateDiffInDays(a, b);
+    if (difference > 15) {
+      const maxDate = new Date()
+      maxDate.setDate(maxDate.getDate() + 16);
+      res.send({success:false, message: `Cannot see this much into the future. The furthest date to forecast the weather is ${maxDate}.`})
+      return 
+    }
+
     // Get location data
     const results = await geonames.search({ name_equals: req.query.location })
     const city = results.geonames[0];
@@ -54,10 +65,7 @@ app.get('/locationInfo', async function (req, res) {
     const getWeatherRaw = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${city.lat}&lon=${city.lng}&key=${process.env.weatherbitKEY}`)
     const getWeatherJson = await getWeatherRaw.json();
 
-    // Get weather data of a particular day
-    const a = new Date(),
-      b = new Date(req.query.date),
-      difference = dateDiffInDays(a, b);
+    
 
     // Store weather info in an objects
     const weatherData = {};

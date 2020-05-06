@@ -6,15 +6,14 @@ function storeItem(event) {
     event.preventDefault();
     const generatedContent = document.getElementById('results').innerHTML;
     localStorage.setItem('travelApp.htmlContent', generatedContent);
-    const response = document.createElement('div');
-    response.textContent = 'Trip saved successfully.';
-    document.getElementById('results').appendChild(response);
+    document.getElementById('message').textContent = 'Trip successfully saved.';
 }
 
 function deleteItem(event) {
     event.preventDefault();
     localStorage.removeItem('travelApp.htmlContent');
     document.getElementById('results').innerHTML = null;
+    document.getElementById('message').textContent = 'Trip successfully deleted.';
 }
 
 export { getItem, storeItem, deleteItem }

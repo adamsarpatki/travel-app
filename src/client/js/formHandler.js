@@ -4,11 +4,15 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let locationInput = document.getElementById('destination-input').value;
     let date = document.getElementById('date-input').value;
-    console.log(date);
     fetch(`http://localhost:8081/locationInfo?location=${locationInput}&date=${date}`)
         .then(res => res.json())
         .then(function (res) {
-            document.getElementById('results').innerHTML = generateHTML(res);
+            if (res.success === false) {
+                document.getElementById('message').innerHTML = res.message;
+            } else {
+                document.getElementById('message').innerHTML = null;
+                document.getElementById('results').innerHTML = generateHTML(res);
+            }
         })
 }
 
