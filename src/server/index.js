@@ -47,9 +47,7 @@ app.get('/locationInfo', async function (req, res) {
     const getWeatherRaw = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${city.lat}&lon=${city.lng}&key=${process.env.weatherbitKEY}`)
     const getWeatherJson = await getWeatherRaw.json();
 
-    
-
-    // Store weather info in an objects
+    // Store weather info in an object
     const weatherData = {};
     weatherData.high = getWeatherJson.data[difference].max_temp;
     weatherData.low = getWeatherJson.data[difference].min_temp;
@@ -60,7 +58,8 @@ app.get('/locationInfo', async function (req, res) {
     const getImageJson = await getImageRaw.json();
 
     // Add info to travelData
-    travelData.location = req.query.location;
+    travelData.location = city.name;
+    travelData.country = city.countryName;
     travelData.departure = req.query.date;
     travelData.days = difference;
     travelData.weather = weatherData;
@@ -68,6 +67,7 @@ app.get('/locationInfo', async function (req, res) {
     res.send(travelData);
 
   } catch (err) {
-    console.error(err);
+    res.send({success:false, message: err.message})
+    //console.error(err);
   }
 })
