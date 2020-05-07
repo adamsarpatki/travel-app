@@ -41,6 +41,10 @@ app.get('/locationInfo', async function (req, res) {
 
     // Get location data
     const results = await geonames.search({ name_equals: req.query.location })
+    if (results.totalResultsCount === 0) {
+      res.send({success:false, message: `Oops! It seems like this location doesn't exist. Try again!`})
+      return
+    }
     const city = results.geonames[0];
 
     // Get weather data
