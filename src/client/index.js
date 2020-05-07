@@ -16,6 +16,7 @@ import './media-queries/header-media.scss'
 
 export { handleSubmit, storeItem, deleteItem, generateHTML, getItem }
 
+document.getElementById('submit-button').addEventListener('click', validateForm);
 document.getElementById('submit-button').addEventListener('click', handleSubmit);
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -24,3 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('results').innerHTML = trips;
     }
 })
+
+function validateForm() {
+    const destination = document.forms["input-form"]["destination-input"].value;
+    const date = document.forms["input-form"]["date-input"].value;
+    if (destination === "" || date === "") {
+      alert("Please fill out both fields.");
+      return false
+    }
+  }
