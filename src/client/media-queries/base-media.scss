@@ -1,11 +1,12 @@
 @media (max-width: 375px) {
+    
     main {
         margin-left: 0.5rem;
         margin-right: 0.5rem;
     }
     
     .message {
-        margin: 0.5rem auto;
+        margin-left: 0.5rem;
     }
     
     section {
@@ -29,5 +30,13 @@
     section {
         max-width: 100%;
         margin: 1.25rem;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1680px) {
+
+    main {
+        margin-left: 5rem;
+        margin-right: 5rem;
     }
 }

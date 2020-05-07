@@ -21,3 +21,10 @@
         }
     }
 }
+
+@media (min-width: 1025px) and (max-width: 1680px) {
+    footer {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+}

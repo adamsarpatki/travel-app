@@ -18,7 +18,20 @@
         .page-title {
             color: #339966;
             margin: 3rem;
-            font-size: 2rem;
+            font-size: 3rem;
+        }
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1680px) {
+    header {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    
+        .page-title {
+            color: #339966;
+            margin: 3rem;
+            font-size: 3rem;
         }
     }
 }

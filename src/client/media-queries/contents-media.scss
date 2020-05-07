@@ -4,7 +4,7 @@
     #my-trip {
         font-size: 1.6rem;
         font-weight: 600;
-        margin: 0 1rem 1rem 1rem;
+        margin: 1rem 1rem 1rem 1rem;
     }
 
     #departing {
@@ -52,6 +52,41 @@
 
     #typical-weather-title {
         font-size: 1.2rem;
+        font-weight: 500;
+        margin: 2rem 2rem 0 2rem;
+    }
+
+    #typical-weather {
+        margin: 1rem 2rem 0 2rem;
+    }
+
+    #weather-desc {
+        margin: 1rem 2rem 0 2rem;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1680px) {
+    $div-margin: 2rem;
+
+    #my-trip {
+        font-size: 2rem;
+        font-weight: 600;
+        margin: 0 2rem 2rem 2rem;
+    }
+
+    #departing {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin: $div-margin;
+    }
+
+    #day-counter {
+        font-size: 1.5rem;
+        margin: $div-margin;
+    }
+
+    #typical-weather-title {
+        font-size: 1.5rem;
         font-weight: 500;
         margin: 2rem 2rem 0 2rem;
     }

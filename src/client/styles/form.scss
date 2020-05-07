@@ -1,13 +1,15 @@
+@import "../media-queries/form-media.scss";
+
 form {
     display: grid;
 
     input {
-        padding: 5px 20px;
+        padding: 0.32rem 1.25rem;
         font-family: 'Jost', sans-serif;
         font-size: 1rem;
         width: 100%;
-        line-height: 16px;
-        margin: 10px 0;
+        line-height: 1rem;
+        margin: 0.6rem 0;
     }
 
     .fields:focus {
