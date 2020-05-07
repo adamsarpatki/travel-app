@@ -1,0 +1,50 @@
+.buttons:hover {
+    cursor: pointer;
+}
+
+form {
+
+    #submit-button {
+        justify-self: center;
+        border: 2px solid black;
+        transition-duration: 0.4s;
+        max-width: 50%;
+    }
+
+    #submit-button:hover {
+        background-color: #008CBA;
+        color: white;
+    }
+}
+
+#result-data {
+
+    input {
+        margin: 0.5rem 2rem;
+        padding: 1rem;
+        font-size: 1rem;
+        border-radius: 12px;
+    }
+
+    #save-button {
+        border: 2px solid #339966;
+        transition-duration: 0.4s;
+    }
+
+    #save-button:hover {
+        background-color: #339966;
+        color: white;
+    }
+
+    #delete-button {
+        margin-left: 0;
+        border: 2px solid red;
+        transition-duration: 0.4s;
+    }
+
+    #delete-button:hover {
+        background-color: red;
+        color: white;
+    }
+
+}
