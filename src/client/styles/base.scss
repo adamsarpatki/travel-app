@@ -25,7 +25,7 @@ section {
     display: grid;
     row-gap: 1rem;
     column-gap: 1rem;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.5fr 1.7fr;
     grid-auto-rows: minmax(auto, auto);
 
     #location-photo img {
