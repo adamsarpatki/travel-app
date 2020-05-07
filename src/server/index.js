@@ -35,14 +35,14 @@ app.get('/locationInfo', async function (req, res) {
     if (difference > 15) {
       const maxDate = new Date()
       maxDate.setDate(maxDate.getDate() + 16);
-      res.send({success:false, message: `Cannot see this much into the future. The furthest date to forecast the weather is ${maxDate}.`})
-      return 
+      res.send({ success: false, message: `Cannot see this much into the future. The furthest date to forecast the weather is ${maxDate}.` })
+      return
     }
 
     // Get location data
     const results = await geonames.search({ name_equals: req.query.location })
     if (results.totalResultsCount === 0) {
-      res.send({success:false, message: `Oops! It seems like this location doesn't exist. Try again!`})
+      res.send({ success: false, message: `Oops! It seems like this location doesn't exist. Try again!` })
       return
     }
     const city = results.geonames[0];
@@ -71,7 +71,6 @@ app.get('/locationInfo', async function (req, res) {
     res.send(travelData);
 
   } catch (err) {
-    res.send({success:false, message: err.message})
-    //console.error(err);
+    console.error(err);
   }
 })

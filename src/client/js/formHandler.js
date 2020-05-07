@@ -1,6 +1,10 @@
 function handleSubmit(event) {
     event.preventDefault()
 
+    if (!validateForm()) {
+        return
+    }
+
     // Getting date and travel destination from the form fields
     let locationInput = document.getElementById('destination-input').value;
     let date = document.getElementById('date-input').value;
@@ -30,5 +34,13 @@ function generateHTML(data) {
             </div>`
 }
 
+function validateForm() {
+    const destination = document.forms["input-form"]["destination-input"].value;
+    const date = document.forms["input-form"]["date-input"].value;
+    if (destination === "" || date === "") {
+      alert("Please fill out both fields.");
+      return false
+    }
+  }
 
 export { handleSubmit, generateHTML }
