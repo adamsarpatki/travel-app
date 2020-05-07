@@ -1,25 +1,25 @@
 function handleSubmit(event) {
     event.preventDefault()
 
-    // check what text was put into the form field
+    // Getting date and travel destination from the form fields
     let locationInput = document.getElementById('destination-input').value;
     let date = document.getElementById('date-input').value;
     fetch(`http://localhost:8081/locationInfo?location=${locationInput}&date=${date}`)
         .then(res => res.json())
         .then(function (res) {
-            if (res.success === false) {
+            if (res.success === false) { // This gives back an error message if the date is not in 16 days
                 document.getElementById('message').innerHTML = res.message;
-            } else {
+            } else { // Clears any messages and calls generateHTML()
                 document.getElementById('message').innerHTML = null;
                 document.getElementById('results').innerHTML = generateHTML(res);
             }
         })
 }
-
+// Function to generate HTML from the collected data
 function generateHTML(data) {
     return `<div id="location-photo"><img src="${data.imageURL}"></div>
             <div id="result-data">
-                <div id="my-trip">My trip to ${data.location}.</div>
+                <div id="my-trip">My trip to ${data.location}, ${data.country}.</div>
                 <div id="departing">Departing at ${data.departure}.</div>
                 <input class="buttons" id="save-button" type="button" value="Save trip" name="" onclick="return Client.storeItem(event)">
                 <input class="buttons" id="delete-button" type="button" value="Delete trip" name="" onclick="return Client.deleteItem(event)">
