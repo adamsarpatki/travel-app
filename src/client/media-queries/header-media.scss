@@ -1,0 +1,24 @@
+@media (max-width: 375px) {
+    header {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+
+        .page-title {
+            margin: 2rem 2rem 0rem 2rem;
+            font-size: 3rem;
+        }
+    }
+}
+
+@media (min-width: 376px) and (max-width: 1024px) {
+    header {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    
+        .page-title {
+            color: #339966;
+            margin: 3rem;
+            font-size: 2rem;
+        }
+    }
+}

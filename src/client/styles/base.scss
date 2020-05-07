@@ -1,3 +1,5 @@
+@import "../media-queries/base-media.scss";
+
 body {
     display: flex;
     flex-direction: column;
@@ -27,6 +29,7 @@ section {
     column-gap: 1rem;
     grid-template-columns: 1.5fr 1.7fr;
     grid-auto-rows: minmax(auto, auto);
+    margin-top: 30px;
 
     #location-photo img {
         max-width: 100%;

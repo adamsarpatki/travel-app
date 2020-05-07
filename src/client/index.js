@@ -8,6 +8,11 @@ import './styles/contents.scss'
 import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
+import './media-queries/base-media.scss'
+import './media-queries/contents-media.scss'
+import './media-queries/form-media.scss'
+import './media-queries/footer-media.scss'
+import './media-queries/header-media.scss'
 
 export { handleSubmit, storeItem, deleteItem, generateHTML, getItem }
 
