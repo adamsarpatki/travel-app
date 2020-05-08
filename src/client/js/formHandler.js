@@ -40,6 +40,8 @@ function validateForm() {
     if (destination === "" || date === "") {
       alert("Please fill out both fields.");
       return false
+    } else {
+        return true
     }
   }
 
